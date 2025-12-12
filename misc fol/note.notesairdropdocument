@@ -1,0 +1,88 @@
+
+Ä
+Á
+¾
+»¯#include <stdio.h>
+char *get_next_line(int fd)
+{
+    
+    static char* rem;
+    char *str;
+    char *temp;
+    if (fd < 0)
+        return (NULL);
+    str = malloc(BUFFER_SIZE + 1);
+    if (!str)
+        return (NULL);
+    ssize_t bread = 1; // for the while loop
+
+    // read into buffer âˆš
+    // find new line && if no new line reached save it âˆš
+    static char *nonline;
+    // printf("%s\n", str);
+    
+    while(bread > 0)
+    {
+        bread = read(fd, str, BUFFER_SIZE);
+        if (bread < 0)
+            return (free (str), free(rem), free(nonline), NULL);
+        str[bread] = '\0';
+        if (bread == 0 && nonline == NULL && !rem)
+        {
+            free (str);
+            free(rem);
+            // free(nonline);
+            nonline = NULL;
+            return (NULL);
+        }
+        if (rem)
+        {
+            temp = ft_strjoin(rem, str);
+            free(rem);
+            rem = NULL;
+            free (str);
+            str = temp;
+        }
+        char *ptr = ft_strchr(str, '\n');
+        // printf("after: %s\n", ptr);
+        if (ptr)
+        {
+            rem = ft_strdup(ptr + 1);
+            *(ptr + 1) = '\0';
+            // ft_bzero(ptr + 1, ft_strlen(str + 1));
+            if (nonline)
+            {
+                temp = ft_strjoin(nonline, str);
+                free (nonline);
+                nonline = NULL;
+                free(str);
+                str = temp;
+            }
+            return (str);
+        }
+        else
+        {
+            if (nonline)
+            {
+                temp = ft_strjoin(nonline, str);
+                free(nonline);
+                nonline = temp;
+            }
+            else
+                nonline = ft_strdup(str);
+        }
+    }
+    free(str);
+    if (nonline)
+    {
+        temp = nonline;
+        nonline = NULL;
+        return (temp);
+    }
+    return NULL;
+    // printf("Rem   :%s\n", rem);
+    // printf("buffer:%s\n", str);
+    // printf("noline:%s\n", nonline);
+}
+
+*«
