@@ -1,0 +1,6 @@
+print_memory
+brackets
+rpn_calc
+options
+biggest_pal
+cycle_detector
