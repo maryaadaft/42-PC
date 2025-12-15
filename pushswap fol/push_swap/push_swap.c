@@ -9,26 +9,23 @@ int	main(int argc, char **argv)
 	//make push fn to add things to list
 	if (argc > 1)
 	{
-		int i = 1; //increment to go through the arguments
+		int i = 2; //increment to go through the arguments, starts at 2 cause lstnew will take the 1st arg for the head of the list
 		s_list *stack_a = NULL;
+		
+		stack_a = ft_lstnew(mini_atoi(argv[1]));
 		s_list *loop_list = stack_a;
-		s_list *head_ptr = stack_a; // to reset the position back to the 1st node
-
-
 		while (i < (argc))
 		{
-			//push arguments to the stack until argc goes into 1??
-			loop_list = ft_lstnew(mini_atoi(argv[i]));
-			printf("what are u: %d\n", loop_list->data);
+			//push arguments to the stack until no arg remain
+			ft_lstadd_back(&loop_list, ft_lstnew(mini_atoi(argv[i])));
 			loop_list = loop_list->next;
-			// argc--;
 			i++;
 		}
-		loop_list = head_ptr;
-		while(loop_list != NULL) 
+		s_list *head_ptr = stack_a; // to reset the position back to the 1st node
+		while(head_ptr != NULL) 
 		{
-			printf("%d\n", loop_list->data);
-			loop_list = loop_list->next;
+			printf("list has %d\n", head_ptr->data);
+			head_ptr = head_ptr->next;
 		}
 	}
 	else
