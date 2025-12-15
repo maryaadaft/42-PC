@@ -40,3 +40,18 @@ s_list	*ft_lstnew(int data)
 	abdu_the_kiddo->next = NULL;
 	return (abdu_the_kiddo);
 }
+
+int	ft_lstsize(s_list *lst)
+{
+	int	i;
+
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst != NULL)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
+}

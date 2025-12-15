@@ -25,5 +25,7 @@ typedef struct stack_list {
 void	ft_lstadd_back(s_list **lst, s_list *new);
 s_list	*ft_lstnew(int data);
 int	mini_atoi(char *str);
+int	ft_lstsize(s_list *lst);
+char	**ft_split(char const *s, char c);
 
 #endif

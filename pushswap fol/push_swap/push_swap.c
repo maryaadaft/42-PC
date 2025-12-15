@@ -27,6 +27,24 @@ int	main(int argc, char **argv)
 			printf("list has %d\n", head_ptr->data);
 			head_ptr = head_ptr->next;
 		}
+		printf("lst size is: %d\n", ft_lstsize(stack_a));
+	}
+	else if (argc == 2)
+	{
+		// if arg is inside a "" so time to call split fn *crying*
+
+		//1st split
+		//then save them in a string
+		//then give them to mini_atoi
+		//then repeat above (so make it into its own fn)
+
+		char **split_num = ft_split(argv[1], ' ');
+		int w = 0;
+		while (split_num[w] != NULL)
+		{
+			printf("split num is: %s\n", split_num[w]);
+			w++;
+		}
 	}
 	else
 		printf("idk something is wrong with the code up there mate figure it out\n");
