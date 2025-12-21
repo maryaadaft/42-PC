@@ -1,2 +1,5 @@
 # 42-PC
-backup of 42
+
+*pushswap* main project
+
+backup of 42 iMac
