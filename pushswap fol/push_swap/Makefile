@@ -5,7 +5,13 @@ OBJs = ${SRCs:.c=.o}
 # AR = ar rcs
 NAME = push_swap
 
-all: $(NAME)
+lib_dir = libfoot
+LIBFT = lib_dir/libft.a
+
+all: $LIBFT $(NAME)
+
+$LIBFT:
+	make -C libft
 $(NAME): $(OBJs)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJs)
 
