@@ -9,15 +9,16 @@ int	main(int argc, char **argv)
 	//make push fn to add things to list
 	if (argc > 1)
 	{
+		printf("libft is llinked %d\n", ft_isdigit(argv[1][0]));
 		int i = 2; //increment to go through the arguments, starts at 2 cause lstnew will take the 1st arg for the head of the list
 		s_list *stack_a = NULL;
-		
-		stack_a = ft_lstnew(mini_atoi(argv[1]));
+
+		stack_a = ft_listnew(mini_atoi(argv[1]));
 		s_list *loop_list = stack_a;
 		while (i < (argc))
 		{
 			//push arguments to the stack until no arg remain
-			ft_lstadd_back(&loop_list, ft_lstnew(mini_atoi(argv[i])));
+			ft_listadd_back(&loop_list, ft_listnew(mini_atoi(argv[i])));
 			loop_list = loop_list->next;
 			i++;
 		}
@@ -27,7 +28,7 @@ int	main(int argc, char **argv)
 			printf("list has %d\n", head_ptr->data);
 			head_ptr = head_ptr->next;
 		}
-		printf("lst size is: %d\n", ft_lstsize(stack_a));
+		printf("lst size is: %d\n", ft_listsize(stack_a));
 	}
 	else if (argc == 2)
 	{

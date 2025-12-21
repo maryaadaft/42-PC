@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_lstadd_back(s_list **lst, s_list *new)
+void	ft_listadd_back(s_list **lst, s_list *new)
 {
 	s_list	*last;
 
@@ -29,7 +29,7 @@ void	ft_lstadd_back(s_list **lst, s_list *new)
 	last->next = new;
 }
 
-s_list	*ft_lstnew(int data)
+s_list	*ft_listnew(int data)
 {
 	s_list	*abdu_the_kiddo;
 
@@ -41,7 +41,7 @@ s_list	*ft_lstnew(int data)
 	return (abdu_the_kiddo);
 }
 
-int	ft_lstsize(s_list *lst)
+int	ft_listsize(s_list *lst)
 {
 	int	i;
 

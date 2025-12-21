@@ -2,26 +2,31 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 SRCs = push_swap.c ps_parse.c list_fn.c
 OBJs = ${SRCs:.c=.o}
-# AR = ar rcs
+AR = ar rcs
 NAME = push_swap
 
-lib_dir = libfoot
-LIBFT = lib_dir/libft.a
 
-all: $(lib_dir) $(NAME)
+LIBFT = libfoot/libft.a
 
+all: $(NAME)
 
-$LIBFT:
-	make -C libft
+$(LIBFT):
+	make -C libfoot
 
-$(NAME): $(OBJs)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJs)
+# $(NAME): $(OBJs) $(LIBFT)
+# 	$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJs)
+
+$(NAME): $(OBJs) $(LIBFT)
+	$(AR) $(NAME) $(LIBFT)$(OBJs)
 
 clean:
 	rm -rf $(OBJs)
-
+# run clean in libft folder
+	make clean -C libfoot
 fclean: clean
 	rm -rf $(NAME)
+# run fclean in libft folder
+	make fclean -C libfoot
 
 re: fclean all
 

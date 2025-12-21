@@ -13,19 +13,21 @@
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
+#include "libfoot/libft.h" //including the libft to include the fns
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h> //remove this at some point
+#include <stdint.h> //for linux machines (limits.h), running prject on codespace and later linux in labs!! include in libft
 
 typedef struct stack_list {
 	int data;
 	void *next;
 } s_list;
 
-void	ft_lstadd_back(s_list **lst, s_list *new);
-s_list	*ft_lstnew(int data);
+void	ft_listadd_back(s_list **lst, s_list *new);
+s_list	*ft_listnew(int data);
 int	mini_atoi(char *str);
-int	ft_lstsize(s_list *lst);
-char	**ft_split(char const *s, char c);
+int	ft_listsize(s_list *lst);
+// char	**ft_split(char const *s, char c);
 
 #endif
