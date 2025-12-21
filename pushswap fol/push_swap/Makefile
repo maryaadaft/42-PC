@@ -8,10 +8,12 @@ NAME = push_swap
 lib_dir = libfoot
 LIBFT = lib_dir/libft.a
 
-all: $LIBFT $(NAME)
+all: $(lib_dir) $(NAME)
+
 
 $LIBFT:
 	make -C libft
+
 $(NAME): $(OBJs)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJs)
 
