@@ -21,6 +21,7 @@ $(NAME): $(OBJs) $(LIBFT)
 clean:
 	(cd libfoot && make clean)
 	rm -rf $(OBJs)
+	
 # run clean in libfoot folder
 fclean: clean
 	(cd libfoot && make fclean)
