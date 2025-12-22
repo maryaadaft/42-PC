@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h> //remove this at some point
-#include <stdint.h> //for linux machines (limits.h), running prject on codespace and later linux in labs!! include in libft
+#include <stdint.h> //for linux machines (limits.h), running project on codespace and later linux in labs!! include in libft
 
 typedef struct stack_list {
 	int data;
@@ -25,7 +25,7 @@ typedef struct stack_list {
 } s_list;
 
 void	ft_listadd_back(s_list **lst, s_list *new);
-s_list	*ft_listnew(int data);
+s_list	*ft_listnew(int data); //new list fn with content type int
 int	mini_atoi(char *str);
 int	ft_listsize(s_list *lst);
 // char	**ft_split(char const *s, char c);

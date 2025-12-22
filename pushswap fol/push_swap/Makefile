@@ -5,28 +5,27 @@ OBJs = ${SRCs:.c=.o}
 AR = ar rcs
 NAME = push_swap
 
-
 LIBFT = libfoot/libft.a
 
 all: $(NAME)
 
 $(LIBFT):
-	make -C libfoot
-
-# $(NAME): $(OBJs) $(LIBFT)
-# 	$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJs)
+	(cd libfoot && make)
 
 $(NAME): $(OBJs) $(LIBFT)
-	$(AR) $(NAME) $(LIBFT)$(OBJs)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJs) $(LIBFT)
+
+# $(NAME): $(OBJs) $(LIBFT)
+# 	$(AR) $(NAME) $(LIBFT) $(OBJs)
 
 clean:
+	(cd libfoot && make clean)
 	rm -rf $(OBJs)
-# run clean in libft folder
-	make clean -C libfoot
+# run clean in libfoot folder
 fclean: clean
+	(cd libfoot && make fclean)
 	rm -rf $(NAME)
 # run fclean in libft folder
-	make fclean -C libfoot
 
 re: fclean all
 
