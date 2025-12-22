@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
-#include "libfoot/libft.h" //including the libft to include the fns
+#include "libft/libft.h" //including the libft to include the fns
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h> //remove this at some point
