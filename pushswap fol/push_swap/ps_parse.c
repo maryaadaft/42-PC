@@ -1,7 +1,8 @@
 #include "push_swap.h"
 
 // any parsing fns go here?
-int	mini_atoi(char *str)
+
+/* int	mini_atoi(char *str)
 {
 	int i = 0;
 	int nb = 0;
@@ -12,4 +13,4 @@ int	mini_atoi(char *str)
 	}
 	return (nb);
 }
-
+ */

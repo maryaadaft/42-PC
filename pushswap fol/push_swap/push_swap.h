@@ -26,7 +26,7 @@ typedef struct stack_list {
 
 void	ft_listadd_back(s_list **lst, s_list *new);
 s_list	*ft_listnew(int data); //new list fn with content type int
-int	mini_atoi(char *str);
+// int	mini_atoi(char *str);
 int	ft_listsize(s_list *lst);
 // char	**ft_split(char const *s, char c);
 
