@@ -12,15 +12,19 @@ int	main(int argc, char **argv)
 		s_list *loop_list = stack_a; //loop through the list safely without losing pointer to head
 		while (i < (argc))
 		{
-			//push arguments to the stack until no arg remain
+			if (arg_is_dup(argv) == 1 || arg_overflow(argv) == 1)
+			{
+				return (write(2, "Error\n", 6), 1);
+			}
 			ft_listadd_back(&loop_list, ft_listnew(ft_atoi(argv[i])));
 			loop_list = loop_list->next;
+			loop_list->index = i - 1; //uh oh the position is wronggggggggg NOOOOOOOOO
 			i++;
 		}
 		s_list *head_ptr = stack_a; // to reset the position back to the 1st node
 		while(head_ptr != NULL) 
 		{
-			printf("list has %d\n", head_ptr->data);
+			printf("list at pos: %d has %d\n", head_ptr->index, head_ptr->data);
 			head_ptr = head_ptr->next;
 		}
 	}

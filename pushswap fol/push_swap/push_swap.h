@@ -21,7 +21,8 @@
 
 typedef struct stack_list {
 	int data;
-	void *next;
+	struct stack_list *next;
+	struct stack_list *prev;
 } s_list;
 
 //new list fn, not from libft
