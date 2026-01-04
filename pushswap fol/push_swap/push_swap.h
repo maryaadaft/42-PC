@@ -24,10 +24,15 @@ typedef struct stack_list {
 	void *next;
 } s_list;
 
+//new list fn, not from libft
 void	ft_listadd_back(s_list **lst, s_list *new);
+int		ft_listsize(s_list *lst);
 s_list	*ft_listnew(int data); //new list fn with content type int
-// int	mini_atoi(char *str);
-int	ft_listsize(s_list *lst);
-// char	**ft_split(char const *s, char c);
+
+//error fns ps_error
+int arg_is_num(char **argv);
+int arg_is_dup(char **argv);
+int arg_overflow(char **argv);
+
 
 #endif

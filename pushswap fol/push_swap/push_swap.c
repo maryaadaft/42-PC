@@ -1,36 +1,15 @@
 #include "push_swap.h"
 
-int arg_error(char **argv)
-{
-	int i = 1;
-	int j;
-
-	while (argv[i])
-	{
-		j = 0;
-		if (argv[i][j] == '-' || argv[i][j] == '+')
-			j++;
-		while (argv[i][j])
-		{
-			if (!ft_isdigit(argv[i][j]))
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
 	//make push fn to add things to list
-	if (argc > 2 && arg_error(argv) == 0)
+	if (argc > 2 && arg_is_num(argv) == 0)
 	{
-		int i = 2; //increment to go through the arguments, starts at 2 cause lstnew will take the 1st arg for the head of the list
+		int i = 2; //increment to go through the arguments, starts at 2 cause listnew will take the 1st arg for the head of the list
 		s_list *stack_a = NULL;
 
 		stack_a = ft_listnew(ft_atoi(argv[1]));
-		s_list *loop_list = stack_a;
+		s_list *loop_list = stack_a; //loop through the list safely without losing pointer to head
 		while (i < (argc))
 		{
 			//push arguments to the stack until no arg remain
