@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		s_list *head_ptr = stack_a; // to reset the position back to the 1st node
 		while(head_ptr != NULL) 
 		{
-			// printf("list at pos: %d has %d\n", head_ptr->index, head_ptr->data);
+			printf("list has %d\n", head_ptr->data);
 			head_ptr = head_ptr->next;
 		}
 	}
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		//then repeat above (so make it into its own fn) √
 		int w;
 		char **split_num = ft_split(argv[1], ' '); //split the argument into strings
-		s_list *stack_a = NULL; 
+		s_list *stack_a = NULL;
 
 		stack_a = ft_listnew(ft_atoi(split_num[0])); //1st string inside split num is now inside the stack
 		//using a different pointer to go through the stack list

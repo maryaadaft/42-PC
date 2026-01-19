@@ -17,3 +17,4 @@
 
  // if multiple args then add to stack
  //handle 2 arg, where split is needed or only one arg is given (without quotations)
+	//need strlen i think to check for one argument with quotations + no need for split or one argument without quotations
