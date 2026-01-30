@@ -2,10 +2,9 @@
 
 int	main(int argc, char **argv)
 {
-	//make push fn to add things to list
 	if (argc > 2 && arg_is_num(argv) == 0)
 	{
-		int i = 2; //increment to go through the arguments, starts at 2 cause listnew will take the 1st arg for the head of the list
+		int i = 2; 
 		s_list *stack_a = NULL;
 
 		stack_a = ft_listnew(ft_atoi(argv[1]));
@@ -18,10 +17,9 @@ int	main(int argc, char **argv)
 			}
 			ft_listadd_back(&loop_list, ft_listnew(ft_atoi(argv[i])));
 			loop_list = loop_list->next;
-			// loop_list->index = i - 1; //uh oh the position is wronggggggggg NOOOOOOOOO
 			i++;
 		}
-		s_list *head_ptr = stack_a; // to reset the position back to the 1st node
+		s_list *head_ptr = stack_a;
 		while(head_ptr != NULL) 
 		{
 			printf("list has %d\n", head_ptr->data);
@@ -30,18 +28,11 @@ int	main(int argc, char **argv)
 	}
 	else if (argc == 2)
 	{
-		// if arg is inside a "" so time to call split fn *crying*
-
-		//1st split √
-		//then save them in a string √
-		//then give them to mini_atoi √
-		//then repeat above (so make it into its own fn) √
 		int w;
-		char **split_num = ft_split(argv[1], ' '); //split the argument into strings
+		char **split_num = ft_split(argv[1], ' ');
 		s_list *stack_a = NULL;
 
-		stack_a = ft_listnew(ft_atoi(split_num[0])); //1st string inside split num is now inside the stack
-		//using a different pointer to go through the stack list
+		stack_a = ft_listnew(ft_atoi(split_num[0]));
 		s_list *loop_list = stack_a;
 		w = 1;
 		while (split_num[w] != NULL)
