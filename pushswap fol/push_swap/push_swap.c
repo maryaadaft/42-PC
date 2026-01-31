@@ -20,11 +20,45 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		s_list *head_ptr = stack_a;
-		while(head_ptr != NULL) 
+		while(head_ptr != NULL)  //loop and print list before operations
 		{
 			printf("list has %d\n", head_ptr->data);
 			head_ptr = head_ptr->next;
 		}
+
+		s_list	*stack_b;
+		stack_b = ft_listnew(5);
+		stack_b->next = ft_listnew(9);
+		s_list	*b_head = stack_b; //head of stack_b
+
+		printf("\n");
+		while(b_head != NULL)  //loop through b
+		{
+			printf("blist has %d\n", b_head->data);
+			b_head = b_head->next;
+		}
+
+		//operation testing
+		if (stack_a)
+		{
+			printf("after operations \n");
+			// ps_sa(&stack_a);
+			ps_pa(&stack_a, &stack_b);
+			s_list *op_a = stack_a;
+			while(op_a != NULL)  //loop and print list after operations
+			{
+				printf("list has %d\n", op_a->data);
+				op_a = op_a->next;
+			}
+			printf("\n");
+			b_head = stack_b;
+			while(b_head != NULL)  //loop through b
+			{
+				printf("blist has %d\n", b_head->data);
+				b_head = b_head->next;
+			}
+		}
+	
 	}
 	else if (argc == 2)
 	{

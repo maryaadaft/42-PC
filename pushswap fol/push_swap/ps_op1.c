@@ -7,15 +7,22 @@
 void	ps_sa(s_list **stack_a)
 {
     s_list	*first;
-    s_list	*second;
-
-    if (ft_listsize(*stack_a) < 2) // why swap when the list only has 2 items
+    s_list	*sec;
+    
+    if (!*stack_a || !(*stack_a)->next || !stack_a ||ft_listsize(*stack_a) < 2)
         return ;
     first = *stack_a;
-    second = first->next;
-    first->next = second->next;
-    second->next = first;
-    *stack_a = second;
+    sec = first->next;
+
+    first->next = sec->next;
+    if(sec->next)
+        sec->next->prev = first;
+    
+    sec->prev = NULL;
+    sec->next = first;
+    first->prev = sec;
+
+   *stack_a = sec;
     write(1, "sa\n", 3);
 }
 
@@ -23,15 +30,22 @@ void	ps_sa(s_list **stack_a)
 void	ps_sb(s_list **stack_b)
 {
     s_list	*first;
-    s_list	*second;
-
-    if (ft_listsize(*stack_b) < 2)
+    s_list	*sec;
+    
+    if (!*stack_b || !(*stack_b)->next || !stack_b ||ft_listsize(*stack_b) < 2)
         return ;
     first = *stack_b;
-    second = first->next;
-    first->next = second->next;
-    second->next = first;
-    *stack_b = second;
+    sec = first->next;
+
+    first->next = sec->next;
+    if(sec->next)
+        sec->next->prev = first;
+    
+    sec->prev = NULL;
+    sec->next = first;
+    first->prev = sec;
+
+   *stack_b = sec;
     write(1, "sb\n", 3);
 }
 

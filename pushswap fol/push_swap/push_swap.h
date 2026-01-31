@@ -35,5 +35,9 @@ int arg_is_num(char **argv);
 int arg_is_dup(char **argv);
 int arg_overflow(char **argv);
 
+//operations
+void	ps_sa(s_list **stack_a);
+void	ps_sb(s_list **stack_b);
+void	ps_pa(s_list **stack_a, s_list **stack_b);
 
 #endif
