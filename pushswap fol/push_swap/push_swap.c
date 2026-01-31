@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 			head_ptr = head_ptr->next;
 		}
 
+		//make stack b
 		s_list	*stack_b;
 		stack_b = ft_listnew(5);
 		stack_b->next = ft_listnew(9);
@@ -41,9 +42,11 @@ int	main(int argc, char **argv)
 		//operation testing
 		if (stack_a)
 		{
-			printf("after operations \n");
-			// ps_sa(&stack_a);
-			ps_pa(&stack_a, &stack_b);
+			printf("------after operations \n");
+			/* ps_ra(&stack_a);
+			ps_rb(&stack_b); */
+			// ps_rr(&stack_a, & stack_b);
+			// ps_pb(&stack_a, &stack_b);
 			s_list *op_a = stack_a;
 			while(op_a != NULL)  //loop and print list after operations
 			{

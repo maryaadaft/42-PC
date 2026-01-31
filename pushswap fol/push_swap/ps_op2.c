@@ -6,21 +6,26 @@
 //rotate a
 void    ps_ra(s_list **stack_a)
 {
-    s_list	*first;
-    s_list	*last;
+	s_list	*first;
+	s_list	*last;
 
-    if (ft_listsize(*stack_a) < 2)
-        return ;
-    first = *stack_a;
-    last = *stack_a;
-    while (last->next != NULL)
-        last = last->next;
-    *stack_a = first->next;
-    first->next = NULL;
-    last->next = first;
-    write(1, "ra\n", 3);
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
+		return ;
+
+	first = *stack_a;
+	last = *stack_a;
+	while (last->next)
+		last = last->next;
+
+	*stack_a = first->next;
+	(*stack_a)->prev = NULL;
+
+	first->next = NULL;
+	first->prev = last;
+	last->next = first;
+
+	write(1, "ra\n", 3);
 }
-
 
 //rotate b
 void    ps_rb(s_list **stack_b)
@@ -28,15 +33,21 @@ void    ps_rb(s_list **stack_b)
     s_list	*first;
     s_list	*last;
 
-    if (ft_listsize(*stack_b) < 2)
+    if (!stack_b || !*stack_b || !(*stack_b)->next)
         return ;
+
     first = *stack_b;
     last = *stack_b;
-    while (last->next != NULL)
+    while (last->next)
         last = last->next;
+
     *stack_b = first->next;
+    (*stack_b)->prev = NULL;
+
     first->next = NULL;
+    first->prev = last;
     last->next = first;
+
     write(1, "rb\n", 3);
 }
 //rotate both a and b

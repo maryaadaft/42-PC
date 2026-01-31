@@ -2,19 +2,24 @@
 
 // any parsing fns go here?
 
-/* int	mini_atoi(char *str)
-{
-	int i = 0;
-	int nb = 0;
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		nb = nb * 10 + str[i] - 48; // its PLUS 1st then MINUS ascii 48 im gonna kms
-		i++;
-	}
-	return (nb);
-}
- */
 
- // if multiple args then add to stack
- //handle 2 arg, where split is needed or only one arg is given (without quotations)
-	//need strlen i think to check for one argument with quotations + no need for split or one argument without quotations
+// if multiple args then add to stack
+//handle 2 arg, where split is needed or only one arg is given (without quotations)
+//need strlen i think to check for one argument with quotations + no need for split or one argument without quotations
+
+//check if already sorted!
+int	is_list_sorted(s_list **stack_a)
+{
+	s_list	*current;
+
+	if (!stack_a || !*stack_a)
+		return (1);
+	current = *stack_a;
+	while (current->next != NULL)
+	{
+		if (current->data > current->next->data)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}

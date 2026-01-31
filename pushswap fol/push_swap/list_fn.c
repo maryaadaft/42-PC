@@ -31,14 +31,14 @@ void	ft_listadd_back(s_list **lst, s_list *new)
 
 s_list	*ft_listnew(int data)
 {
-	s_list	*abdu_the_kiddo;
+	s_list	*create_list;
 
-	abdu_the_kiddo = malloc(sizeof(s_list));
-	if (abdu_the_kiddo == NULL)
+	create_list = malloc(sizeof(s_list));
+	if (create_list == NULL)
 		return (NULL);
-	abdu_the_kiddo->data = data;
-	abdu_the_kiddo->next = NULL;
-	return (abdu_the_kiddo);
+	create_list->data = data;
+	create_list->next = NULL;
+	return (create_list);
 }
 
 int	ft_listsize(s_list *lst)

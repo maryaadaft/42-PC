@@ -1,32 +1,20 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SRCs = push_swap.c ps_parse.c list_fn.c ps_error.c ps_op1.c ps_op4.c
+SRCs = push_swap.c ps_parse.c list_fn.c ps_error.c ps_op1.c ps_op2.c ps_op3.c ps_op4.c mylib/ft_atoi.c mylib/ft_isdigit.c mylib/ft_split.c mylib/ft_strlen.c mylib/ft_substr.c
 OBJs = ${SRCs:.c=.o}
 AR = ar rcs
 NAME = push_swap
 
-LIBFT = libft/libft.a
-
 all: $(NAME)
 
-$(LIBFT):
-	(cd libft && make)
-
-$(NAME): $(OBJs) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJs) $(LIBFT)
-
-# $(NAME): $(OBJs) $(LIBFT)
-# 	$(AR) $(NAME) $(LIBFT) $(OBJs)
+$(NAME): $(OBJs)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJs)
 
 clean:
-	(cd libft && make clean)
 	rm -rf $(OBJs)
-# run clean in libft folder
 
 fclean: clean
-	(cd libft && make fclean)
 	rm -rf $(NAME)
-# run fclean in libft folder
 
 re: fclean all
 

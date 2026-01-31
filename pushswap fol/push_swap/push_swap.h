@@ -30,6 +30,13 @@ void	ft_listadd_back(s_list **lst, s_list *new);
 int		ft_listsize(s_list *lst);
 s_list	*ft_listnew(int data); //new list fn with content type int
 
+//own library
+int	ft_atoi(const char *str);
+int	ft_isdigit(int c);
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *s);
+
 //error fns ps_error
 int arg_is_num(char **argv);
 int arg_is_dup(char **argv);
@@ -39,5 +46,12 @@ int arg_overflow(char **argv);
 void	ps_sa(s_list **stack_a);
 void	ps_sb(s_list **stack_b);
 void	ps_pa(s_list **stack_a, s_list **stack_b);
+void	ps_pb(s_list **stack_a, s_list **stack_b);
+void    ps_ra(s_list **stack_a);
+void    ps_rb(s_list **stack_b);
+void    ps_rr(s_list **stack_a, s_list **stack_b);
+void    ps_rra(s_list **stack_a);
+void    ps_rrb(s_list **stack_b);
+void ps_rrr(s_list **stack_a, s_list **stack_b);
 
 #endif

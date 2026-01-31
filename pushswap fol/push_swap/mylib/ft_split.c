@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "../push_swap.h"
 
 static	int	word_count(char const *s, char c)
 {
