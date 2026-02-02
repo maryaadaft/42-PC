@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static int	overflowing(long long n, int sign, char c)
+/* static int	overflowing(long long n, int sign, char c)
 {
 	if (n > LLONG_MAX / 10
 		|| (n == LLONG_MAX / 10 && (c - '0') > LLONG_MAX % 10))
@@ -22,6 +22,17 @@ static int	overflowing(long long n, int sign, char c)
 		return (0);
 	}
 	return (1);
+} */
+
+static int	overflowing(long long n, int sign, char c)
+{
+	(void)sign;
+	if (n > LLONG_MAX / 10
+		|| (n == LLONG_MAX / 10 && (c - '0') > LLONG_MAX % 10))
+	{
+			return (1);
+	}
+	return (0);
 }
 
 int	ft_atoi(const char *str)
@@ -44,8 +55,9 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] >= 48 && str[i] <= 57)
 	{
-		if (overflowing(n, sign, str[i]) != 1)
-			return (overflowing(n, sign, str[i]));
+		if (overflowing(n, sign, str[i]) == 1)
+			// return (overflowing(n, sign, str[i]));
+			
 		n = (n * 10) + str[i] - 48;
 		i++;
 	}

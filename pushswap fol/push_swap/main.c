@@ -11,7 +11,7 @@ int	main(int argc, char **argv)
 		s_list *loop_list = stack_a; //loop through the list safely without losing pointer to head
 		while (i < (argc))
 		{
-			if (arg_is_dup(argv) == 1 || arg_overflow(argv) == 1 || arg_overflow(argv) == 1)
+			if (arg_is_dup(argv) == 1 || arg_overflow(argv) == 1)
 			{
 				return (write(2, "Error\n", 6), 1);
 			}
