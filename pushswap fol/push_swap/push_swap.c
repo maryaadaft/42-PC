@@ -2,7 +2,7 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc > 2 && arg_is_num(argv) == 0)
+	if (argc > 2)
 	{
 		int i = 2; 
 		s_list *stack_a = NULL;
@@ -11,7 +11,7 @@ int	main(int argc, char **argv)
 		s_list *loop_list = stack_a; //loop through the list safely without losing pointer to head
 		while (i < (argc))
 		{
-			if (arg_is_dup(argv) == 1 || arg_overflow(argv) == 1 || arg_overflow(argv) == 1)
+			if (arg_is_dup(argv) == 1 || arg_overflow(argv) == 1)
 			{
 				return (write(2, "Error\n", 6), 1);
 			}
@@ -66,6 +66,13 @@ int	main(int argc, char **argv)
 	else if (argc == 2)
 	{
 		int w;
+		if (has_space(argv) == 1)
+		{
+			if (arg_is_dup(argv) == 1 || arg_overflow(argv) == 1)
+			{
+				return (write(2, "Error\n", 6), 1);
+			}
+		}
 		char **split_num = ft_split(argv[1], ' ');
 		s_list *stack_a = NULL;
 

@@ -23,3 +23,22 @@ int	is_list_sorted(s_list **stack_a)
 	}
 	return (1);
 }
+
+int	has_space(char **argv)
+{
+	int i = 1;
+	int j;
+
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] == ' ')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

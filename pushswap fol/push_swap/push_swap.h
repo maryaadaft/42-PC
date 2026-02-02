@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <stdio.h> //remove this at some point
 #include <stdint.h> //for linux machines (limits.h), running project on codespace and later linux in labs!! include in libft
+#include <limits.h> 
 
 typedef struct stack_list {
 	int data;
@@ -41,6 +42,8 @@ size_t	ft_strlen(const char *s);
 int arg_is_num(char **argv);
 int arg_is_dup(char **argv);
 int arg_overflow(char **argv);
+
+int	has_space(char **argv);
 
 //operations
 void	ps_sa(s_list **stack_a);
