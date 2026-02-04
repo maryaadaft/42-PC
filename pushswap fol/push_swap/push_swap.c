@@ -73,6 +73,13 @@ int	main(int argc, char **argv)
 	else if (argc == 2 && is_it_space(argv) == 0)
 	{
 		int w;
+		// if (has_space(argv) == 1)
+		// {
+		// 	if (arg_is_dup(argv) == 1 || arg_overflow(argv) == 1)
+		// 	{
+		// 		return (write(2, "Error\n", 6), 1);
+		// 	}
+		// }
 		char **split_num = ft_split(argv[1], ' ');
 		s_list *stack_a = NULL;
 

@@ -45,6 +45,8 @@ int arg_overflow(char **argv);
 int	is_it_space(char **argv);
 void    err_ret();
 
+int	has_space(char **argv);
+
 //operations
 void	ps_sa(s_list **stack_a);
 void	ps_sb(s_list **stack_b);
