@@ -23,3 +23,23 @@ int	is_list_sorted(s_list **stack_a)
 	}
 	return (1);
 }
+
+int	is_it_space(char **argv)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			if ((argv[i][j] >= 9 && argv[i][j] <= 13) || argv[i][j] == 32)
+				return(1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

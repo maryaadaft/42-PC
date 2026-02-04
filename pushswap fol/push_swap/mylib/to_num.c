@@ -24,18 +24,30 @@
 	return (1);
 } */
 
-static int	overflowing(long long n, int sign, char c)
+static int	overflowing(long long n, int sign, char c, int *over_check)
 {
-	(void)sign;
-	if (n > LLONG_MAX / 10
-		|| (n == LLONG_MAX / 10 && (c - '0') > LLONG_MAX % 10))
+	if (sign == 1)
 	{
-			return (1);
+		if (n > INT_MAX / 10
+			|| (n == INT_MAX / 10 && (c - '0') > INT_MAX % 10))
+		{
+				*over_check = 1;
+				return (*over_check);
+		}
+	}
+	if (sign == -1)
+	{
+		if (n > -(long)INT_MIN / 10
+			|| (n == -(long)INT_MIN / 10 && (c - '0') > -(long)(INT_MIN % 10)))
+			{
+				*over_check = 1;
+				return (*over_check);
+			}
 	}
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+int	to_num(const char *str, int *over_check)
 {
 	int			i;
 	int			sign;
@@ -55,9 +67,8 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] >= 48 && str[i] <= 57)
 	{
-		if (overflowing(n, sign, str[i]) == 1)
-			// return (overflowing(n, sign, str[i]));
-			
+		if (overflowing(n, sign, str[i], over_check) == 1)
+			return (overflowing(n, sign, str[i], over_check));	
 		n = (n * 10) + str[i] - 48;
 		i++;
 	}

@@ -28,6 +28,7 @@ int arg_is_dup(char **argv)
 {
     int i;
     int j;
+    int num_flag = 0;
 
     i = 1;
     while (argv[i])
@@ -35,7 +36,7 @@ int arg_is_dup(char **argv)
         j = i + 1;
         while (argv[j])
         {
-            if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+            if (to_num(argv[i], &num_flag) == to_num(argv[j], &num_flag))
                 return (1);
             j++;
         }
@@ -44,20 +45,9 @@ int arg_is_dup(char **argv)
     return (0);
 }
 
-//protect against int overflow/underflow
-int arg_overflow(char **argv)
+void    err_ret()
 {
-    int i;
-    long num;
-
-    i = 1;
-    while (argv[i])
-    {
-        num = ft_atoi(argv[i]);
-        if (num > INT_MAX || num < INT_MIN)
-            return (1);
-        i++;
-    }
-    return (0);
+    write(2, "Error\n", 6);
+    return ;
 }
 //if no args at all
