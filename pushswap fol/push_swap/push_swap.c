@@ -58,6 +58,8 @@ int	main(int argc, char **argv)
 				sort_three(&op_a);
 			if (argc == 3)
 				sort_two(&op_a);
+			
+			printf("min number is %d\n", min_num(op_a)->data);
 
 			while(op_a != NULL)  //loop and print list after operations
 			{

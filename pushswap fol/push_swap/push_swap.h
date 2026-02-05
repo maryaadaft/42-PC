@@ -62,4 +62,7 @@ void ps_rrr(s_list **stack_a, s_list **stack_b);
 void	sort_two(s_list **stack_a);
 void	sort_three(s_list **stack_a);
 
+s_list	*max_num(s_list *stack_a);
+s_list	*min_num(s_list *stack);
+
 #endif

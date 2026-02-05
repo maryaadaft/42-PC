@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-s_list	*max_num(s_list *stack_a)
-{
-	s_list *max;
-
-	max = stack_a;
-	while(stack_a)
-	{
-		if (stack_a->data > max->data)
-			max = stack_a;
-		stack_a = stack_a->next;
-	}
-	return (max);
-}
-
 void	sort_two(s_list **stack_a)
 {
 	if ((*stack_a)->data > (*stack_a)->next->data)
