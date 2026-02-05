@@ -46,28 +46,29 @@ int	main(int argc, char **argv)
 		// 	b_head = b_head->next;
 		// }
 
-		//operation testing
-		// if (stack_a)
-		// {
-		// 	printf("------after operations \n");
-		// 	/* ps_ra(&stack_a);
-		// 	ps_rb(&stack_b); */
-		// 	// ps_rr(&stack_a, & stack_b);
-		// 	// ps_pb(&stack_a, &stack_b);
-		// 	s_list *op_a = stack_a;
-		// 	while(op_a != NULL)  //loop and print list after operations
-		// 	{
-		// 		printf("list has %d\n", op_a->data);
-		// 		op_a = op_a->next;
-		// 	}
-		// 	printf("\n");
-		// 	b_head = stack_b;
-		// 	while(b_head != NULL)  //loop through b
-		// 	{
-		// 		printf("blist has %d\n", b_head->data);
-		// 		b_head = b_head->next;
-		// 	}
-		// }
+		/*  operation testing */
+		if (stack_a)
+		{
+			printf("------after operations \n");
+			/* ps_ra(&stack_a);
+			ps_rb(&stack_b); */
+			// ps_rr(&stack_a, & stack_b);
+			// ps_pb(&stack_a, &stack_b);
+			sort_three(&stack_a);
+			s_list *op_a = stack_a;
+			while(op_a != NULL)  //loop and print list after operations
+			{
+				printf("list has %d\n", op_a->data);
+				op_a = op_a->next;
+			}
+			// printf("\n");
+			// b_head = stack_b;
+			// while(b_head != NULL)  //loop through b
+			// {
+			// 	printf("blist has %d\n", b_head->data);
+			// 	b_head = b_head->next;
+			// }
+		}
 	
 	}
 	else if (argc == 2 && is_it_space(argv) == 0)

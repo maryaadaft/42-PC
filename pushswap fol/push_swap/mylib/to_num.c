@@ -12,18 +12,6 @@
 
 #include "../push_swap.h"
 
-/* static int	overflowing(long long n, int sign, char c)
-{
-	if (n > LLONG_MAX / 10
-		|| (n == LLONG_MAX / 10 && (c - '0') > LLONG_MAX % 10))
-	{
-		if (sign == 1)
-			return (-1);
-		return (0);
-	}
-	return (1);
-} */
-
 static int	overflowing(long long n, int sign, char c, int *over_check)
 {
 	if (sign == 1)

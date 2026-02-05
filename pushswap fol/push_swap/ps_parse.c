@@ -38,5 +38,7 @@ int	is_it_space(char **argv)
 			if ((argv[i][j] >= 9 && argv[i][j] <= 13) || argv[i][j] == 32)
 				return(1);
 		}
+	}
+	return (0);
 }
 

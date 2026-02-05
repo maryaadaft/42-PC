@@ -59,4 +59,8 @@ void    ps_rra(s_list **stack_a);
 void    ps_rrb(s_list **stack_b);
 void ps_rrr(s_list **stack_a, s_list **stack_b);
 
+//sorts
+void	sort_two(s_list **stack_a);
+void	sort_three(s_list **stack_a);
+
 #endif

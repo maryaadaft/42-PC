@@ -1,0 +1,24 @@
+#include "push_swap.h"
+
+void	sort_two(s_list **stack_a)
+{
+	if ((*stack_a)->data > (*stack_a)->next->data)
+		ps_sa(stack_a);
+}
+
+void	sort_three(s_list **stack_a)
+{
+	s_list *max;
+	s_list *head;
+
+	head = *stack_a; //referencing
+	max = *stack_a;
+	while ((head))
+	{
+		if ((head)->data > (head)->next->data)
+			max->data = (head)->data;
+		(head) = (head)->next;
+	}
+	printf("beeg number is: %d\n", max->data);
+}
+
