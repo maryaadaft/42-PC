@@ -6,46 +6,38 @@
 // swap a
 void	ps_sa(s_list **stack_a)
 {
-    s_list	*first;
-    s_list	*sec;
-    
-    if (!*stack_a || !(*stack_a)->next || !stack_a ||ft_listsize(*stack_a) < 2)
-        return ;
-    first = *stack_a;
-    sec = first->next;
+	s_list	*first;
+	s_list	*second;
 
-    first->next = sec->next;
-    if(sec->next)
-        sec->next->prev = first;
-    
-    sec->prev = NULL;
-    sec->next = first;
-    first->prev = sec;
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
+		return ;
 
-   *stack_a = sec;
-    write(1, "sa\n", 3);
+	first = *stack_a;
+	second = first->next;
+
+	first->next = second->next;
+	second->next = first;
+	*stack_a = second;
+
+	write(1, "sa\n", 3);
 }
 
 // swap b
 void	ps_sb(s_list **stack_b)
 {
     s_list	*first;
-    s_list	*sec;
-    
-    if (!*stack_b || !(*stack_b)->next || !stack_b ||ft_listsize(*stack_b) < 2)
+    s_list	*second;
+
+    if (!stack_b || !*stack_b || !(*stack_b)->next)
         return ;
+
     first = *stack_b;
-    sec = first->next;
+    second = first->next;
 
-    first->next = sec->next;
-    if(sec->next)
-        sec->next->prev = first;
-    
-    sec->prev = NULL;
-    sec->next = first;
-    first->prev = sec;
+    first->next = second->next;
+    second->next = first;
+    *stack_b = second;
 
-   *stack_b = sec;
     write(1, "sb\n", 3);
 }
 

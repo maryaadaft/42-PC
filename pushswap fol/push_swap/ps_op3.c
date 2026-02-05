@@ -4,53 +4,54 @@
 // ====== only reverse rotate
 
 //reverse rotate a
-void    ps_rra(s_list **stack_a)
+void	ps_rra(s_list **stack_a)
 {
+	s_list	*prev;
 	s_list	*last;
-	s_list	*second_last;
 
 	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
 
+	prev = NULL;
 	last = *stack_a;
+
 	while (last->next)
+	{
+		prev = last;
 		last = last->next;
+	}
+	prev->next = NULL;
 
-	second_last = last->prev;
-
-	second_last->next = NULL;
-
-	last->prev = NULL;
 	last->next = *stack_a;
-	(*stack_a)->prev = last;
-
 	*stack_a = last;
+
 	write(1, "rra\n", 4);
 }
+
 
 //reverse rotate b
 void    ps_rrb(s_list **stack_b)
 {
-    s_list	*last;
-    s_list	*second_last;
+	s_list	*prev;
+	s_list	*last;
 
-    if (!stack_b || !*stack_b || !(*stack_b)->next)
-        return ;
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
+		return ;
 
-    last = *stack_b;
-    while (last->next)
-        last = last->next;
+	prev = NULL;
+	last = *stack_b;
 
-    second_last = last->prev;
+	while (last->next)
+	{
+		prev = last;
+		last = last->next;
+	}
+	prev->next = NULL;
 
-    second_last->next = NULL;
+	last->next = *stack_b;
+	*stack_b = last;
 
-    last->prev = NULL;
-    last->next = *stack_b;
-    (*stack_b)->prev = last;
-
-    *stack_b = last;
-    write(1, "rrb\n", 4);
+	write(1, "rrb\n", 4);
 }
 
 //reverse rotate both a and b

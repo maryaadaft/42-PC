@@ -4,7 +4,7 @@
 // only rotate fn for a and b and both
 
 //rotate a
-void    ps_ra(s_list **stack_a)
+void	ps_ra(s_list **stack_a)
 {
 	s_list	*first;
 	s_list	*last;
@@ -14,18 +14,16 @@ void    ps_ra(s_list **stack_a)
 
 	first = *stack_a;
 	last = *stack_a;
+
 	while (last->next)
 		last = last->next;
 
 	*stack_a = first->next;
-	(*stack_a)->prev = NULL;
-
 	first->next = NULL;
-	first->prev = last;
 	last->next = first;
 
 	write(1, "ra\n", 3);
-}
+ }
 
 //rotate b
 void    ps_rb(s_list **stack_b)
@@ -38,14 +36,12 @@ void    ps_rb(s_list **stack_b)
 
     first = *stack_b;
     last = *stack_b;
+
     while (last->next)
         last = last->next;
 
     *stack_b = first->next;
-    (*stack_b)->prev = NULL;
-
     first->next = NULL;
-    first->prev = last;
     last->next = first;
 
     write(1, "rb\n", 3);

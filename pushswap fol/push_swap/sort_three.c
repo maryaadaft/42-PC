@@ -1,24 +1,39 @@
 #include "push_swap.h"
 
+s_list	*max_num(s_list *stack_a)
+{
+	s_list *max;
+
+	max = stack_a;
+	while(stack_a)
+	{
+		if (stack_a->data > max->data)
+			max = stack_a;
+		stack_a = stack_a->next;
+	}
+	return (max);
+}
+
 void	sort_two(s_list **stack_a)
 {
 	if ((*stack_a)->data > (*stack_a)->next->data)
 		ps_sa(stack_a);
 }
 
+
 void	sort_three(s_list **stack_a)
 {
 	s_list *max;
 	s_list *head;
 
-	head = *stack_a; //referencing
-	max = *stack_a;
-	while ((head))
-	{
-		if ((head)->data > (head)->next->data)
-			max->data = (head)->data;
-		(head) = (head)->next;
-	}
-	printf("beeg number is: %d\n", max->data);
+	head = *stack_a; //keeping the head
+	max = max_num(*stack_a);
+	
+	if ((*stack_a)->data == max->data)
+		ps_ra(stack_a);
+	else if ((*stack_a)->next->data == max->data)
+		ps_rra(stack_a);
+	if ((*stack_a)->data > (*stack_a)->next->data)
+		ps_sa(stack_a);
 }
 

@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 				write(2, "Error\n", 6);
 				return(1);
 			}
-			printf("flag is: %d\n", num_flag);
 			loop_list = loop_list->next;
 			i++;
 		}
@@ -54,8 +53,12 @@ int	main(int argc, char **argv)
 			ps_rb(&stack_b); */
 			// ps_rr(&stack_a, & stack_b);
 			// ps_pb(&stack_a, &stack_b);
-			sort_three(&stack_a);
 			s_list *op_a = stack_a;
+			if (argc == 4)
+				sort_three(&op_a);
+			if (argc == 3)
+				sort_two(&op_a);
+
 			while(op_a != NULL)  //loop and print list after operations
 			{
 				printf("list has %d\n", op_a->data);
