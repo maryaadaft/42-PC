@@ -16,12 +16,17 @@
 // #include "libft/libft.h" //including the libft to include the fns
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <stdio.h> //remove this at some point
 #include <stdint.h> //for linux machines (limits.h), running project on codespace and later linux in labs!! include in libft
 #include <limits.h>
 
 typedef struct stack_list {
 	int data;
+	int pos;
+	int rank;
+	int	cost_a;
+	int	cost_b;
 	struct stack_list *next;
 } s_list;
 
