@@ -79,3 +79,5 @@ void	node_rank(s_list **stack)
 			i++;
 	}
 }
+
+s_list	*target_in_a(s_list *stack_a, s_list *stack_b)
