@@ -27,6 +27,7 @@ typedef struct stack_list {
 	int rank;
 	int	cost_a;
 	int	cost_b;
+	int	total_cost;
 	struct stack_list *next;
 } s_list;
 
