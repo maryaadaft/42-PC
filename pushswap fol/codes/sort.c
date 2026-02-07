@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 // Step 1: Initialize stacks and rank them
 void push_swap(s_list **stack_a, s_list **stack_b)
 {
