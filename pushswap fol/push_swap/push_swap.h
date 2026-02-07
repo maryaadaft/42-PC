@@ -6,7 +6,7 @@
 /*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:20:43 by maryaada          #+#    #+#             */
-/*   Updated: 2025/12/10 18:13:17 by maryaada         ###   ########.fr       */
+/*   Updated: 2026/02/07 21:10:41 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,15 @@ void	sort_three(s_list **stack_a);
 
 s_list	*max_num(s_list *stack_a);
 s_list	*min_num(s_list *stack);
+
+void	set_pos(s_list *stack);
+int	get_cost(int pos, int size);
+void	reset_rank(s_list *stack);
+void	node_rank(s_list **stack);
+s_list	*target_in_a(s_list *stack_a, s_list *stack_b);
+void	calculate_costs(s_list *stack_a, s_list *stack_b);
+s_list	*find_cheapest(s_list *stack_b);
+void	execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest);
+
 
 #endif

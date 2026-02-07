@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SRCs = push_swap.c ps_parse.c list_fn.c ps_error.c ps_op1.c ps_op2.c ps_op3.c ps_op4.c mylib/to_num.c mylib/ft_isdigit.c mylib/ft_split.c mylib/ft_strlen.c mylib/ft_substr.c sort_three.c ps_sort_utils.c
+SRCs = ps_parse.c list_fn.c ps_error.c ps_op1.c ps_op2.c ps_op3.c ps_op4.c mylib/to_num.c mylib/ft_isdigit.c mylib/ft_split.c mylib/ft_strlen.c mylib/ft_substr.c sort_three.c ps_sort_utils.c ps_main.c
 OBJs = ${SRCs:.c=.o}
 AR = ar rcs
 NAME = push_swap

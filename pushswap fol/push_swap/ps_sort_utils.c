@@ -119,6 +119,7 @@ void	calculate_costs(s_list *stack_a, s_list *stack_b)
     }
 }
 
+
 s_list	*find_cheapest(s_list *stack_b)
 {
     s_list	*cheapest;
@@ -137,11 +138,9 @@ s_list	*find_cheapest(s_list *stack_b)
 
 void	execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest)
 {
-    s_list	*target;
     int		cost_a;
     int		cost_b;
 
-    target = target_in_a(*stack_a, cheapest);
     cost_a = cheapest->cost_a;
     cost_b = cheapest->cost_b;
     
@@ -150,6 +149,12 @@ void	execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest)
         ps_rr(stack_a, stack_b);
         cost_a--;
         cost_b--;
+    }
+    while (cost_a < 0 && cost_b < 0)
+    {
+    ps_rrr(stack_a, stack_b);
+    cost_a++;
+    cost_b++;
     }
     while (cost_a > 0)
     {
@@ -173,3 +178,4 @@ void	execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest)
     }
     ps_pa(stack_a, stack_b);
 }
+
