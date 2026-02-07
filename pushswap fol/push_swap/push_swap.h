@@ -14,7 +14,7 @@
 #define PUSH_SWAP_H
 
 // #include "libft/libft.h" //including the libft to include the fns
-#include <stdlib.h>
+#include <stdlib.h> //malloc & NULL
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdio.h> //remove this at some point
