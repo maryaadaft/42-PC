@@ -1,5 +1,25 @@
 #include "push_swap.h"
 
+
+
+//for debug printing
+/* void print_stack(s_list *stack)
+{
+    while (stack)
+    {
+        printf("data:%d   rank:%d   pos:%d   ca:%d   cb:%d   tc:%d\n",
+            stack->data,
+            stack->rank,
+            stack->pos,
+            stack->cost_a,
+            stack->cost_b,
+            stack->total_cost);
+        stack = stack->next;
+    }
+    printf("----\n");
+} */
+
+
 void final_rotate(s_list **stack_a)
 {
     s_list *min;
@@ -80,41 +100,47 @@ void	sort_turk(s_list **stack_a, s_list **stack_b)
     final_rotate(stack_a);
 }
 
+
+s_list  *push_to_list(s_list **stack, int data)
+{
+	s_list *new_node = ft_listnew(data);
+	if (!new_node)
+		return (err_ret(), NULL); 
+
+	if (!*stack)
+		*stack = new_node; //stack points to first node (new node)
+	else
+	{
+		s_list *current = *stack;
+		while (current->next)
+			current = current->next;
+		current->next = new_node;
+	}
+	return new_node;
+}
+
 void parse_args(int argc, char **argv, s_list **stack_a)
 {
     int i;
-    int value;
+    int data;
     int over;
+
+	if (arg_is_num(argv) || arg_is_dup(argv))
+		err_ret(); 
 
     i = 1;
     while (i < argc)
     {
         over = 0;
-        value = to_num(argv[i], &over);
-        if (over)
+        data = to_num(argv[i], &over);
+        if (over == 1 || !push_to_list(stack_a, data))
             err_ret(); // your existing error handler
-       ft_listadd_back(stack_a, ft_listnew(value));
+       ft_listadd_back(stack_a, ft_listnew(data));
         i++;
     }
+	    // print_stack(stack_a);
 }
 
-
-//for debug printing
-/* void print_stack(s_list *stack)
-{
-    while (stack)
-    {
-        printf("data:%d   rank:%d   pos:%d   ca:%d   cb:%d   tc:%d\n",
-            stack->data,
-            stack->rank,
-            stack->pos,
-            stack->cost_a,
-            stack->cost_b,
-            stack->total_cost);
-        stack = stack->next;
-    }
-    printf("----\n");
-} */
 
 int main(int argc, char **argv)
 {
@@ -127,7 +153,7 @@ int main(int argc, char **argv)
 
 	if (argc == 3)
 		sort_two(&stack_a);
-	if (argc == 4)
+	else if (argc == 4)
 		sort_three(&stack_a);
 	else if (argc > 4)
     	sort_turk(&stack_a, &stack_b);
