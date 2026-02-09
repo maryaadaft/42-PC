@@ -6,21 +6,21 @@
 /*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:20:43 by maryaada          #+#    #+#             */
-/*   Updated: 2026/02/07 21:10:41 by maryaada         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:54:04 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
-// #include "libft/libft.h" //including the libft to include the fns
 #include <stdlib.h> //malloc & NULL
 #include <unistd.h>
-#include <stdbool.h>
 #include <stdio.h> //remove this at some point
-#include <stdint.h> //for linux machines (limits.h), running project on codespace and later linux in labs!! include in libft
 #include <limits.h>
 
+//change s_stack_list
+//change alias to t_list
+//suffer
 typedef struct stack_list {
 	int data;
 	int pos;
@@ -35,6 +35,7 @@ typedef struct stack_list {
 void	ft_listadd_back(s_list **lst, s_list *new);
 int		ft_listsize(s_list *lst);
 s_list	*ft_listnew(int data); //new list fn with content type int
+void    free_all_stack(s_list   **stack);
 
 //own library
 int	to_num(const char *str, int *over_check);
@@ -44,13 +45,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);
 
 //error fns ps_error
-int arg_is_num(char **argv);
-int arg_is_dup(char **argv);
+int arg_is_num(char *argv);
+int arg_is_dup(s_list *stack, int data);
 int arg_overflow(char **argv);
-int	is_it_space(char **argv);
+int	is_it_space(char *argv);
 void    err_ret();
+void	free_split_args(char **split_args);
 
-int	has_space(char **argv);
 int	is_list_sorted(s_list **stack_a);
 
 //operations
