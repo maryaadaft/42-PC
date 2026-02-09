@@ -101,6 +101,8 @@ void	sort_turk(s_list **stack_a, s_list **stack_b)
 }
 
 
+//re writing fns
+
 s_list  *push_to_list(s_list **stack, int data)
 {
 	s_list *new_node = ft_listnew(data);
@@ -124,10 +126,14 @@ void parse_args(int argc, char **argv, s_list **stack_a)
     int i;
     int data;
     int over;
+	char **split_args;
 
 	if (arg_is_num(argv) || arg_is_dup(argv))
-		err_ret(); 
+		err_ret();
+	if (argc == 2 && (has_space(argv[1]) || ft_strlen(argv[1] > 2)))
+		split_args = ft_split(argv[1], ' ');
 
+	//add to stack both split args and argv++ ..
     i = 1;
     while (i < argc)
     {

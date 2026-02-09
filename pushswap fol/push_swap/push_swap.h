@@ -51,6 +51,7 @@ int	is_it_space(char **argv);
 void    err_ret();
 
 int	has_space(char **argv);
+int	is_list_sorted(s_list **stack_a);
 
 //operations
 void	ps_sa(s_list **stack_a);
@@ -62,7 +63,7 @@ void    ps_rb(s_list **stack_b);
 void    ps_rr(s_list **stack_a, s_list **stack_b);
 void    ps_rra(s_list **stack_a);
 void    ps_rrb(s_list **stack_b);
-void ps_rrr(s_list **stack_a, s_list **stack_b);
+void	ps_rrr(s_list **stack_a, s_list **stack_b);
 
 //sorts
 void	sort_two(s_list **stack_a);

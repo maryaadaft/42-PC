@@ -10,9 +10,9 @@ void	sort_two(s_list **stack_a)
 void	sort_three(s_list **stack_a)
 {
 	s_list *max;
-	s_list *head;
+	// s_list *head;
 
-	head = *stack_a; //keeping the head
+	// head = *stack_a; //keeping the head
 	max = max_num(*stack_a);
 	
 	if ((*stack_a)->data == max->data)
