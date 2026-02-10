@@ -28,20 +28,6 @@ s_list	*min_num(s_list *stack)
 	return (min);
 }
 
-// void	set_pos(s_list *stack) //index
-// {
-// 	int i;
-
-//     i = 0;
-// 	while (stack)
-// 	{
-// 		stack->pos = i;
-// 		stack = stack->next;
-//         i++;
-// 	}
-// }
-
-
 int	get_cost(int pos, int size)
 {
 	if (pos <= size / 2)
@@ -49,18 +35,7 @@ int	get_cost(int pos, int size)
 	return (pos - size);  // reverse rotate (negative)
 }
 
-
-void	reset_rank(s_list *stack)
-{
-	while (stack)
-	{
-		stack->rank = -1;
-		stack = stack->next;
-	}
-} //call this when finding the rank of the min number somewhere
-//also move it away from this file
-
-//where it sits in the list (nearer to the top or bottom)
+//where it sits in the list (nearer to the top or bottom) and position (index) in the list
 void	node_rank(s_list **stack)
 {
 	s_list *head;
@@ -82,6 +57,58 @@ void	node_rank(s_list **stack)
 }
 
 // ...existing code...
+
+void	sort_turk(s_list **stack_a, s_list **stack_b)
+{
+	int list_size;
+
+	list_size = ft_listsize(*stack_a);
+	while(list_size > 3)
+	{
+		ps_pb(stack_a, stack_b);
+		list_size--;
+	}
+	sort_three(*stack_a); //push to b then sort the three in a
+	while(*stack_b)
+	{
+		update_stacks(*stack_a, *stack_b);
+		calculate_costs(*stack_a, *stack_b);
+		s_list *cheapest = find_cheapest(*stack_b);
+		execute_moves(stack_a, stack_b);
+	}
+}
+
+void update_stacks(s_list *stack_a, s_list *stack_b)
+{
+	node_rank(&stack_a);
+	node_rank(&stack_b);
+    //target calc
+	//cost calc
+}
+
+void execute_cheapest(s_list **a, s_list **b)
+{
+    s_list *c = find_cheapest(*b);
+
+    while (c->cost_a > 0 && c->cost_b > 0)
+        rr(a, b), c->cost_a--, c->cost_b--;
+    while (c->cost_a < 0 && c->cost_b < 0)
+        rrr(a, b), c->cost_a++, c->cost_b++;
+
+    finish_rotation(a, &c->cost_a, 'a');
+    finish_rotation(b, &c->cost_b, 'b');
+
+    pa(a, b);
+}
+
+
+
+
+
+
+
+
+
 
 s_list	*target_in_a(s_list *stack_a, s_list *stack_b)
 {
@@ -114,6 +141,9 @@ void	calculate_costs(s_list *stack_a, s_list *stack_b)
     size_a = ft_listsize(stack_a);
     size_b = ft_listsize(stack_b);
     current_b = stack_b;
+
+	node_rank(&stack_a);
+	node_rank(&stack_b);
     
     while (current_b)
     {

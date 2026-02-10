@@ -79,6 +79,11 @@ int main(int argc, char **argv)
 
     // reset_rank(stack_a);
     node_rank(&stack_a);
+	// stack_a->cost_a = get_cost(stack_a->pos, list_size);
+	// if (stack_a->cost_a == stack_a->pos)
+	// 	printf("cost check is r: %d\n", stack_a->cost_a);
+	// else
+	// 	printf("cost check is rr: %d\n", stack_a->cost_a);
 
 	if (list_size == 2)
 		sort_two(&stack_a);
