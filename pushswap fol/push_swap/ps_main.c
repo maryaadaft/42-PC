@@ -71,7 +71,7 @@ void parse_args(int argc, char **argv, s_list **stack_a)
 int main(int argc, char **argv)
 {
     s_list *stack_a = NULL;
-    // s_list *stack_b = NULL;
+    s_list *stack_b = NULL;
     int list_size;
 
     parse_args(argc, argv, &stack_a);   // your atoi + push
@@ -79,18 +79,13 @@ int main(int argc, char **argv)
 
     // reset_rank(stack_a);
     node_rank(&stack_a);
-	// stack_a->cost_a = get_cost(stack_a->pos, list_size);
-	// if (stack_a->cost_a == stack_a->pos)
-	// 	printf("cost check is r: %d\n", stack_a->cost_a);
-	// else
-	// 	printf("cost check is rr: %d\n", stack_a->cost_a);
 
 	if (list_size == 2)
 		sort_two(&stack_a);
 	else if (list_size == 3)
 		sort_three(&stack_a);
-	// else if (list_size > 4)
-    // 	sort_turk(&stack_a, &stack_b);
+	else if (list_size > 4)
+    	sort_turk(&stack_a, &stack_b);
 
     // while (list_size > 3)
     // {
