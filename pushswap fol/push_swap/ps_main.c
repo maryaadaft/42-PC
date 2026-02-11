@@ -1,6 +1,7 @@
 #include "push_swap.h"
 
 //for debug printing
+//================== remove this later
 void print_stack(s_list *stack)
 {
     while (stack)
@@ -18,8 +19,6 @@ void print_stack(s_list *stack)
 }
 
 //re writing fns
-
-//pass split args or argv
 void    make_stack(char **args, s_list **stack_a)
 {
     int i;
@@ -29,7 +28,7 @@ void    make_stack(char **args, s_list **stack_a)
     i = 0;
     while(args[i] != NULL)
     {
-        if (arg_is_num(args[i]) == 0) //check dups in args
+        if (arg_is_num(args[i]) == 0) //check valid input in args
             err_ret();
         
         over = 0;
@@ -45,6 +44,7 @@ void    make_stack(char **args, s_list **stack_a)
         i++;
     }
 }
+
 
 void parse_args(int argc, char **argv, s_list **stack_a)
 {
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 		sort_two(&stack_a);
 	else if (list_size == 3)
 		sort_three(&stack_a);
-	else if (list_size > 4)
+	else if (list_size > 3)
     	sort_turk(&stack_a, &stack_b);
 
     // while (list_size > 3)
