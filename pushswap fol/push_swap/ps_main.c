@@ -2,21 +2,21 @@
 
 //for debug printing
 //================== remove this later
-void print_stack(s_list *stack)
-{
-    while (stack)
-    {
-        printf("data:%d   rank:%d   pos:%d   ca:%d   cb:%d   tc:%d\n",
-            stack->data,
-            stack->rank,
-            stack->pos,
-            stack->cost_a,
-            stack->cost_b,
-            stack->total_cost);
-        stack = stack->next;
-    }
-    printf("----\n");
-}
+// void print_stack(s_list *stack)
+// {
+//     while (stack)
+//     {
+//         printf("data:%d   rank:%d   pos:%d   ca:%d   cb:%d   tc:%d\n",
+//             stack->data,
+//             stack->rank,
+//             stack->pos,
+//             stack->cost_a,
+//             stack->cost_b,
+//             stack->total_cost);
+//         stack = stack->next;
+//     }
+//     printf("----\n");
+// }
 
 //re writing fns
 void    make_stack(char **args, s_list **stack_a)
@@ -94,8 +94,8 @@ int main(int argc, char **argv)
     // }
     // execute_moves(&stack_a, &stack_b);
 
-    printf("stack a :\n");
-    print_stack(stack_a); // verify sorted
+    // printf("stack a :\n");
+    // print_stack(stack_a); // verify sorted
     // printf("stack b :\n");
     // print_stack(stack_b); // verify sorted
     free_all_stack(&stack_a);
