@@ -6,7 +6,7 @@
 /*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:20:43 by maryaada          #+#    #+#             */
-/*   Updated: 2026/02/10 20:15:22 by maryaada         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:47:18 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct stack_list {
 	int data;
 	int pos;
 	int rank;
+	struct stack_list *target;
 	int	cost_a;
 	int	cost_b;
 	int	total_cost;
@@ -73,11 +74,11 @@ void	sort_three(s_list **stack_a);
 s_list	*max_num(s_list *stack_a);
 s_list	*min_num(s_list *stack);
 
-void	set_pos(s_list *stack);
-int	get_cost(int pos, int size);
-void	reset_rank(s_list *stack);
+// void	set_pos(s_list *stack);
+// int	get_cost(int pos, int size);
+// void	reset_rank(s_list *stack);
 void	node_rank(s_list **stack);
-s_list	*target_in_a(s_list *stack_a, s_list *stack_b);
+void	target_in_a(s_list *stack_a, s_list *stack_b);
 void	calculate_costs(s_list *stack_a, s_list *stack_b);
 s_list	*find_cheapest(s_list *stack_b);
 void	execute_moves(s_list **stack_a, s_list **stack_b);

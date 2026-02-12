@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ps_sort_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/12 16:35:19 by maryaada          #+#    #+#             */
+/*   Updated: 2026/02/12 16:49:35 by maryaada         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 s_list	*max_num(s_list *stack_a)
@@ -72,15 +84,13 @@ void	sort_turk(s_list **stack_a, s_list **stack_b)
 	while(*stack_b)
 	{
 		update_stacks(*stack_a, *stack_b);
-		calculate_costs(*stack_a, *stack_b);
+		// calculate_costs(*stack_a, *stack_b);
 		// s_list *cheapest = find_cheapest(*stack_b);
 		execute_moves(stack_a, stack_b);
 	}
 }
 //========================================================================
 
-
-//new fns
 
 void update_stacks(s_list *stack_a, s_list *stack_b)
 {
@@ -107,30 +117,33 @@ void update_stacks(s_list *stack_a, s_list *stack_b)
 // }
 
 
-s_list	*target_in_a(s_list *stack_a, s_list *stack_b)
+void    target_in_a(s_list *stack_a, s_list *stack_b)
 {
-    s_list	*target;
-    s_list	*current;
+    s_list	*head_a;
+    s_list	*head_b;
 
-    target = NULL;
-    current = stack_a;
-    while (current)
+    head_b = stack_b;
+    while (head_b)
     {
-        if (current->rank > stack_b->rank && 
-            (!target || current->rank < target->rank))
-            target = current;
-        current = current->next;
+        head_a = stack_a; //reset stack_a everytime
+        head_b->target = max_num(head_a);
+        while(head_a)
+        {
+            if (head_a->data > head_b->data && 
+                (head_a->data < head_b->target->data))
+                head_b->target = head_a;
+            head_a = head_a->next;
+        }
+        if (head_b->target->data < head_b->data)
+            head_b->target = min_num(head_a);
+        head_b = head_b->next;
     }
-    if (!target)
-        target = min_num(stack_a);
-    return (target);
 }
 
 
-/* void	calculate_costs(s_list *stack_a, s_list *stack_b)
+void	calculate_costs(s_list *stack_a, s_list *stack_b)
 {
     s_list	*head_b;
-    s_list	*target;
     int		size_a;
     int		size_b;
 
@@ -147,51 +160,47 @@ s_list	*target_in_a(s_list *stack_a, s_list *stack_b)
             head_b->cost_a = head_b->pos;
         else
             head_b->cost_a = size_a - head_b->pos;
-        target = target_in_a(stack_a, head_b);
-        if (target->rank == 1)
-            head_b->cost_b = target->pos;
+        if (head_b->target->rank == 1)
+            head_b->cost_a = head_b->target->pos;
         else
-            head_b->cost_b = size_b - target->pos;
-        // head_b->cost_a = get_cost(target->pos, size_a);
-        // head_b->cost_b = get_cost(head_b->pos, size_b);
-        // head_b->total_cost = absolute(head_b->cost_a) + absolute(head_b->cost_b);
+            head_b->cost_a = size_a - head_b->target->pos;
         head_b = head_b->next;
     }
-} */
-
-void calculate_costs(s_list *stack_a, s_list *stack_b)
-{
-    s_list *current_b;
-    s_list *target;
-    int size_a;
-    int size_b;
-
-    size_a = ft_listsize(stack_a);
-    size_b = ft_listsize(stack_b);
-
-    node_rank(&stack_a);
-    node_rank(&stack_b);
-
-    current_b = stack_b;
-    while (current_b)
-    {
-        target = target_in_a(stack_a, current_b);
-
-        // cost for A
-        if (target->pos <= size_a / 2)
-            current_b->cost_a = target->pos;
-        else
-            current_b->cost_a = target->pos - size_a;
-
-        // cost for B
-        if (current_b->pos <= size_b / 2)
-            current_b->cost_b = current_b->pos;
-        else
-            current_b->cost_b = current_b->pos - size_b;
-
-        current_b = current_b->next;
-    }
 }
+
+// void calculate_costs(s_list *stack_a, s_list *stack_b)
+// {
+//     s_list *current_b;
+//     s_list *target;
+//     int size_a;
+//     int size_b;
+
+//     size_a = ft_listsize(stack_a);
+//     size_b = ft_listsize(stack_b);
+
+//     node_rank(&stack_a);
+//     node_rank(&stack_b);
+
+//     current_b = stack_b;
+//     while (current_b)
+//     {
+//         target = target_in_a(stack_a, current_b);
+
+//         // cost for A
+//         if (target->pos <= size_a / 2)
+//             current_b->cost_a = target->pos;
+//         else
+//             current_b->cost_a = target->pos - size_a;
+
+//         // cost for B
+//         if (current_b->pos <= size_b / 2)
+//             current_b->cost_b = current_b->pos;
+//         else
+//             current_b->cost_b = current_b->pos - size_b;
+
+//         current_b = current_b->next;
+//     }
+// }
 
 
 s_list	*find_cheapest(s_list *stack_b)
@@ -218,10 +227,10 @@ void	execute_moves(s_list **stack_a, s_list **stack_b)
     int		cost_a;
     int		cost_b;
 
-    // cost_a = cheapest->cost_a;
-    cost_a = 2;
-    // cost_b = cheapest->cost_b;
-    cost_b = 3;
+    cost_a = cheapest->cost_a;
+    // cost_a = 2;
+    cost_b = cheapest->cost_b;
+    // cost_b = 3;
     
     while (cost_a > 0 && cost_b > 0)
     {
