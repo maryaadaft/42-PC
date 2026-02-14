@@ -6,7 +6,7 @@
 /*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:35:19 by maryaada          #+#    #+#             */
-/*   Updated: 2026/02/13 15:18:05 by maryaada         ###   ########.fr       */
+/*   Updated: 2026/02/14 16:51:57 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	sort_turk(s_list **stack_a, s_list **stack_b)
 	while(*stack_b)
 	{
 		update_stacks(*stack_a, *stack_b);
-		s_list *cheapest = find_cheapest(*stack_b);
+		s_list *cheapest = NULL;
+        cheapest = find_cheapest(*stack_b, cheapest);
 		execute_moves(stack_a, stack_b, cheapest);
 	}
     while (!is_list_sorted(stack_a))
@@ -151,6 +152,118 @@ void	calculate_costs(s_list *stack_a, s_list *stack_b)
 }
 
 
+
+s_list	*find_cheapest(s_list *stack, s_list *cheapest)
+{
+    int		total;
+	int		min_cost;
+	s_list	*ptr;
+    
+	ptr = stack;
+	min_cost = INT_MAX;
+	while (ptr)
+	{
+        if (ptr->rank == ptr->target->rank)
+		{
+            if (ptr->cost_a > ptr->cost_b)
+            total = ptr->cost_a;
+			else
+            total = ptr->cost_b;
+		}
+		else
+        total = ptr->cost_a + ptr->cost_b;
+		if (total < min_cost)
+		{
+            min_cost = total;
+			cheapest = ptr;
+		}
+		ptr = ptr->next;
+	}
+	return (cheapest);
+}
+
+
+
+
+
+//====================================================================
+
+// void execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest)
+// {
+//     while (*stack_b != cheapest)
+//     {
+//         if (cheapest->rank == 0)
+//             ps_rb(stack_b);
+//         else
+//             ps_rrb(stack_b);
+//     }
+
+//     while (*stack_a != cheapest->target)
+//     {
+//         if (cheapest->target->rank == 0)
+//             ps_ra(stack_a);
+//         else
+//             ps_rra(stack_a);
+//     }
+
+//     ps_pa(stack_a, stack_b);
+// }
+
+void	execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest)
+{
+    if ((cheapest)->rank == (cheapest)->target->rank)
+    {
+        while(*stack_b != cheapest  && *stack_a != cheapest->target )
+        {
+            if ((cheapest)->rank == 0)
+                ps_rr(stack_a, stack_b);
+            else    
+                ps_rrr(stack_a, stack_b);
+        }
+    }
+    while((*stack_b) != cheapest)
+    {
+        if ((*stack_b)->rank == 0)
+            ps_rb(stack_b);
+        else
+            ps_rrb( stack_b);    
+    }
+    while((*stack_a) != cheapest->target)
+    {
+        if ((*stack_b)->target->rank == 0)
+            ps_ra(stack_a);
+        else
+            ps_rra(stack_a);
+    }
+    ps_pa(stack_a, stack_b);
+}
+
+            
+            /*  while (cost_a > 0)
+            {
+                ps_ra(stack_a);
+                cost_a--;
+            }
+            while (cost_a < 0)
+            {
+                ps_rra(stack_a);
+                cost_a++;
+                }
+                while (cost_b > 0)
+                {
+                    ps_rb(stack_b);
+                    cost_b--;
+                }
+                while (cost_b < 0)
+                {
+                    ps_rrb(stack_b);
+                    cost_b++;
+               } */
+
+
+
+
+                           
 // s_list	*find_cheapest(s_list *stack_b)
 // {
 //     s_list	*cheapest;
@@ -166,113 +279,3 @@ void	calculate_costs(s_list *stack_a, s_list *stack_b)
 //     }
 //     return (cheapest);
 // }
-
-s_list *find_cheapest(s_list *stack_b)
-{
-    s_list *cheapest;
-    s_list *cur;
-    int a, b, cost, min;
-
-    cur = stack_b;
-    cheapest = stack_b;
-    min = 2147483647;
-    while (cur)
-    {
-        a = cur->cost_a;
-        if (a < 0)
-            a = -a;
-        b = cur->cost_b;
-        if (b < 0)
-            b = -b;
-
-        if ((cur->cost_a >= 0 && cur->cost_b >= 0)
-         || (cur->cost_a < 0 && cur->cost_b < 0))
-        {
-            if (a > b)
-                cost = a;
-            else
-                cost = b;
-        }
-        else
-            cost = a + b;
-
-        if (cost < min)
-        {
-            min = cost;
-            cheapest = cur;
-        }
-        cur = cur->next;
-    }
-    return (cheapest);
-}
-
-
-
-
-
-//====================================================================
-
-
-void	execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest)
-{
-    // int		cost_a;
-    // int		cost_b;
-
-    // cost_a = cheapest->cost_a;
-    // // cost_a = 2;
-    // cost_b = cheapest->cost_b;
-    // // cost_b = 3;
-    
-    if ((cheapest)->rank == (cheapest)->target->rank)
-    {
-        while(*stack_b != cheapest  && *stack_a != cheapest->target )
-        {
-            if ((cheapest)->rank == 0)
-                ps_rr(stack_a, stack_b);
-            else    
-                ps_rrr(stack_a, stack_b);
-        }
-    }
-
-    // while((*stack_b)->rank == 0 && (*stack_b) != cheapest)
-    // {
-    //     ps_rr(stack_a, stack_b);
-    // }
-    // while((*stack_b)->rank == 1 && (*stack_b) != cheapest)
-    // {
-    //     ps_rrr(stack_a, stack_b);
-    // }
-
-    // while((*stack_b)->target->rank == 0 && (*stack_a) != cheapest->target)
-    // {
-    //     ps_rr(stack_a, stack_b);
-    // }
-    // while((*stack_b)->target->rank == 1 && (*stack_a)->target != cheapest->target)
-    // {
-    //     ps_rrr(stack_a, stack_b);
-    // }
-    //=====
-    ps_pa(stack_a, stack_b);
-
-}
-
-/*  while (cost_a > 0)
- {
-     ps_ra(stack_a);
-     cost_a--;
- }
- while (cost_a < 0)
- {
-     ps_rra(stack_a);
-     cost_a++;
- }
- while (cost_b > 0)
- {
-     ps_rb(stack_b);
-     cost_b--;
- }
- while (cost_b < 0)
- {
-     ps_rrb(stack_b);
-     cost_b++;
- } */

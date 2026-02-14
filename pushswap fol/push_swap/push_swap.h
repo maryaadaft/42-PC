@@ -6,7 +6,7 @@
 /*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:20:43 by maryaada          #+#    #+#             */
-/*   Updated: 2026/02/12 16:55:36 by maryaada         ###   ########.fr       */
+/*   Updated: 2026/02/14 17:20:53 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,16 @@ void	free_split_args(char **split_args);
 int	is_list_sorted(s_list **stack_a);
 
 //operations
-void	ps_sa(s_list **stack_a);
-void	ps_sb(s_list **stack_b);
 void	ps_pa(s_list **stack_a, s_list **stack_b);
 void	ps_pb(s_list **stack_a, s_list **stack_b);
+void    ps_swap(s_list **stack);
+void	ps_sa(s_list **stack_a);
+void	ps_sb(s_list **stack_b);
+void	ps_rotate(s_list **stack);
 void    ps_ra(s_list **stack_a);
 void    ps_rb(s_list **stack_b);
 void    ps_rr(s_list **stack_a, s_list **stack_b);
+void    ps_rev_rotate(s_list **stack);
 void    ps_rra(s_list **stack_a);
 void    ps_rrb(s_list **stack_b);
 void	ps_rrr(s_list **stack_a, s_list **stack_b);
@@ -80,7 +83,7 @@ s_list	*min_num(s_list *stack);
 void	node_rank(s_list **stack);
 void	target_in_a(s_list *stack_a, s_list *stack_b);
 void	calculate_costs(s_list *stack_a, s_list *stack_b);
-s_list	*find_cheapest(s_list *stack_b);
+s_list	*find_cheapest(s_list *stack_b, s_list *cheapest);
 void	execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest);
 void	sort_turk(s_list **stack_a, s_list **stack_b);
 
