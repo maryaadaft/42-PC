@@ -2,7 +2,7 @@
 
 //for debug printing
 //================== remove this later
-void print_stack(s_list *stack)
+/* void print_stack(s_list *stack)
 {
     while (stack)
     {
@@ -16,7 +16,7 @@ void print_stack(s_list *stack)
         stack = stack->next;
     }
     printf("----\n");
-}
+} */
 
 //re writing fns
 void    make_stack(char **args, s_list **stack_a)
@@ -77,9 +77,6 @@ int main(int argc, char **argv)
     parse_args(argc, argv, &stack_a);   // your atoi + push
     list_size = ft_listsize(stack_a);
 
-    // reset_rank(stack_a);
-    // node_rank(&stack_a);
-
 	if (list_size == 2)
 		sort_two(&stack_a);
 	else if (list_size == 3)
@@ -87,17 +84,6 @@ int main(int argc, char **argv)
 	else if (list_size > 3)
     	sort_turk(&stack_a, &stack_b);
 
-    // while (list_size > 3)
-    // {
-    //     ps_pb(&stack_a, &stack_b);
-    //     list_size--;
-    // }
-    // execute_moves(&stack_a, &stack_b);
-
-    printf("stack a :\n");
-    print_stack(stack_a); // verify sorted
-    // printf("stack b :\n");
-    // print_stack(stack_b); // verify sorted
     free_all_stack(&stack_a);
-    // free_all_stack(&stack_b);
+    free_all_stack(&stack_b
 }

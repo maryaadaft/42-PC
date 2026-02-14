@@ -6,7 +6,7 @@
 /*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:20:43 by maryaada          #+#    #+#             */
-/*   Updated: 2026/02/14 17:20:53 by maryaada         ###   ########.fr       */
+/*   Updated: 2026/02/14 17:40:51 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ s_list	*find_cheapest(s_list *stack_b, s_list *cheapest);
 void	execute_moves(s_list **stack_a, s_list **stack_b, s_list *cheapest);
 void	sort_turk(s_list **stack_a, s_list **stack_b);
 
-void update_stacks(s_list *stack_a, s_list *stack_b);
+void update_stacks(s_list **stack_a, s_list **stack_b);
 
 
 #endif
