@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   to_num.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 20:00:03 by maryaada          #+#    #+#             */
-/*   Updated: 2025/08/04 14:28:21 by maryaada         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:44:09 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ static int	overflowing(long long n, int sign, char c, int *over_check)
 		if (n > INT_MAX / 10
 			|| (n == INT_MAX / 10 && (c - '0') > INT_MAX % 10))
 		{
-				*over_check = 1;
-				return (*over_check);
+			*over_check = 1;
+			return (*over_check);
 		}
 	}
 	if (sign == -1)
 	{
 		if (n > -(long)INT_MIN / 10
 			|| (n == -(long)INT_MIN / 10 && (c - '0') > -(long)(INT_MIN % 10)))
-			{
-				*over_check = 1;
-				return (*over_check);
-			}
+		{
+			*over_check = 1;
+			return (*over_check);
+		}
 	}
 	return (0);
 }
@@ -56,7 +56,7 @@ int	to_num(const char *str, int *over_check)
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		if (overflowing(n, sign, str[i], over_check) == 1)
-			return (overflowing(n, sign, str[i], over_check));	
+			return (overflowing(n, sign, str[i], over_check));
 		n = (n * 10) + str[i] - 48;
 		i++;
 	}

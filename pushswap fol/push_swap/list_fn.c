@@ -6,15 +6,15 @@
 /*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:55:55 by maryaada          #+#    #+#             */
-/*   Updated: 2025/12/10 18:12:16 by maryaada         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:42:24 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_listadd_back(s_list **lst, s_list *new)
+void	ft_listadd_back(t_list **lst, t_list *new)
 {
-	s_list	*last;
+	t_list	*last;
 
 	if (*lst == NULL)
 	{
@@ -29,11 +29,11 @@ void	ft_listadd_back(s_list **lst, s_list *new)
 	last->next = new;
 }
 
-s_list	*ft_listnew(int data)
+t_list	*ft_listnew(int data)
 {
-	s_list	*create_list;
+	t_list	*create_list;
 
-	create_list = malloc(sizeof(s_list));
+	create_list = malloc(sizeof(t_list));
 	if (create_list == NULL)
 		return (NULL);
 	create_list->data = data;
@@ -41,7 +41,7 @@ s_list	*ft_listnew(int data)
 	return (create_list);
 }
 
-int	ft_listsize(s_list *lst)
+int	ft_listsize(t_list *lst)
 {
 	int	i;
 

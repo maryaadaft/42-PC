@@ -1,89 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ps_main.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maryaada <maryaada@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 17:49:22 by maryaada          #+#    #+#             */
+/*   Updated: 2026/02/14 20:02:06 by maryaada         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-//for debug printing
-//================== remove this later
-/* void print_stack(s_list *stack)
+void	make_stack(char	**args, t_list	**stack_a)
 {
-    while (stack)
-    {
-        printf("data:%d   rank:%d   pos:%d   ca:%d   cb:%d   tc:%d\n",
-            stack->data,
-            stack->rank,
-            stack->pos,
-            stack->cost_a,
-            stack->cost_b,
-            stack->total_cost);
-        stack = stack->next;
-    }
-    printf("----\n");
-} */
+	int	i;
+	int	over;
+	int	data;
 
-//re writing fns
-void    make_stack(char **args, s_list **stack_a)
-{
-    int i;
-    int over;
-    int data;
-
-    i = 0;
-    while(args[i] != NULL)
-    {
-        if (arg_is_num(args[i]) == 0) //check valid input in args
-            err_ret();
-        
-        over = 0;
-        data = to_num(args[i], &over);
-        if (over == 1)
-            err_ret();
-            
-        //check dups in stack
-        if (arg_is_dup(*stack_a, data) == 1)
-            err_ret();
-
-        ft_listadd_back(stack_a, ft_listnew(data));
-        i++;
-    }
+	i = 0;
+	while (args[i] != NULL)
+	{
+		if (arg_is_num(args[i]) == 0)
+			err_ret();
+		over = 0;
+		data = to_num(args[i], &over);
+		if (over == 1)
+		{
+			free_split_args(args);
+			err_ret();
+		}
+		if (arg_is_dup(*stack_a, data) == 1)
+		{
+			free_split_args(args);
+			free_all_stack(stack_a);
+			err_ret();
+		}
+		ft_listadd_back(stack_a, ft_listnew(data));
+		i++;
+	}
 }
 
-
-void parse_args(int argc, char **argv, s_list **stack_a)
+void	parse_args(int argc, char **argv, t_list	**stack_a)
 {
-    int i;
-	char **split_args;
+	int		i;
+	char	**split_args;
 
-    if (argc < 2)
-        return ;
-
-	//add to stack both split args and argv++ ..
-    i = 1;
-    while (i < argc)
-    {
-        split_args = ft_split(argv[i], ' ');
-        if (!split_args || !split_args[0])
-            return (free_split_args(split_args), err_ret());
-        make_stack(split_args, stack_a);
-        free_split_args(split_args);
-        i++;
-    }
+	if (argc < 2)
+		return ;
+	i = 1;
+	while (i < argc)
+	{
+		split_args = ft_split(argv[i], ' ');
+		if (!split_args || !split_args[0])
+			return (free_split_args(split_args), err_ret());
+		make_stack(split_args, stack_a);
+		free_split_args(split_args);
+		i++;
+	}
 }
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    s_list *stack_a = NULL;
-    s_list *stack_b = NULL;
-    int list_size;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int		list_size;
 
-    parse_args(argc, argv, &stack_a);   // your atoi + push
-    list_size = ft_listsize(stack_a);
-
+	stack_a = NULL;
+	stack_b = NULL;
+	parse_args(argc, argv, &stack_a);
+	list_size = ft_listsize(stack_a);
 	if (list_size == 2)
 		sort_two(&stack_a);
 	else if (list_size == 3)
 		sort_three(&stack_a);
 	else if (list_size > 3)
-    	sort_turk(&stack_a, &stack_b);
-
-    free_all_stack(&stack_a);
-    free_all_stack(&stack_b
+		sort_turk(&stack_a, &stack_b);
+	free_all_stack(&stack_a);
+	free_all_stack(&stack_b);
 }
